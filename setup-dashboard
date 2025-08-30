@@ -1,0 +1,31 @@
+source: https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/
+
+For minikube based cluster:
+ubuntu@absolved-duckling:~$ minikube addons enable dashboard
+💡  dashboard is an addon maintained by Kubernetes. For any concerns contact minikube on GitHub.
+You can view the list of minikube maintainers at: https://github.com/kubernetes/minikube/blob/master/OWNERS
+    ▪ Using image docker.io/kubernetesui/dashboard:v2.7.0
+    ▪ Using image docker.io/kubernetesui/metrics-scraper:v1.0.8
+💡  Some dashboard features require the metrics-server addon. To enable all features please run:
+
+minikube addons enable metrics-server
+
+🌟  The 'dashboard' addon is enabled
+
+ubuntu@absolved-duckling:~$ minikube dashboard
+🤔  Verifying dashboard health ...
+🚀  Launching proxy ...
+🤔  Verifying proxy health ...
+🎉  Opening http://127.0.0.1:37233/api/v1/namespaces/kubernetes-dashboard/services/http:kubernetes-dashboard:/proxy/ in your default browser...
+👉  http://127.0.0.1:37233/api/v1/namespaces/kubernetes-dashboard/services/http:kubernetes-dashboard:/proxy/
+
+above is on VM through multi-pass
+kubectl proxy --address=0.0.0.0 --port=8001 --disable-filter=true
+run above on VM to start a local HTTP proxy process that listens on port 8001. The proxy speaks to k8s API server on your behalf. 
+
+Requests you send to http://localhost:8001/... (or http://<VM-IP>:8001/... since you bound it to 0.0.0.0) are forwarded into the cluster’s API server.
+
+So you don’t talk to the dashboard service directly; you talk to the API server, and the proxy takes care of authentication, routing, and access rules.
+
+![alt text](image.png)
+

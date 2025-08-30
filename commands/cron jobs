@@ -1,0 +1,9 @@
+ubuntu@absolved-duckling:~$ k create cronjob sleep --image=busybox --schedule="*/1 * * * *" -- sleep 100
+cronjob.batch/sleep created
+
+ubuntu@absolved-duckling:~$ k get cronjobs
+NAME    SCHEDULE      TIMEZONE   SUSPEND   ACTIVE   LAST SCHEDULE   AGE
+sleep   */1 * * * *   <none>     False     2        14s             66m
+
+ubuntu@absolved-duckling:~$ k delete cronjob sleep 
+cronjob.batch "sleep" deleted from default namespace

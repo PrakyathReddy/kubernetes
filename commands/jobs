@@ -1,0 +1,53 @@
+ubuntu@absolved-duckling:~$ k create job sleep --image=busybox -- sleep 100
+
+ubuntu@absolved-duckling:~$ k get pods
+NAME          READY   STATUS      RESTARTS   AGE
+hello-v25zw   0/1     Completed   0          6m11s
+sleep-qpfbp   0/1     Completed   0          105s
+
+ubuntu@absolved-duckling:~$ k get jobs 
+NAME             STATUS     COMPLETIONS   DURATION   AGE
+hello            Complete   1/1           9s         10m
+sleep            Complete   1/1           106s       5m52s
+sleep-29275897   Running    0/1           26s        26s
+
+ubuntu@absolved-duckling:~$ k describe job sleep-29275963
+Name:             sleep-29275963
+Namespace:        default
+Selector:         batch.kubernetes.io/controller-uid=a17ac976-6e10-4431-8e7c-672ce476fc5d
+Labels:           batch.kubernetes.io/controller-uid=a17ac976-6e10-4431-8e7c-672ce476fc5d
+                  batch.kubernetes.io/job-name=sleep-29275963
+                  controller-uid=a17ac976-6e10-4431-8e7c-672ce476fc5d
+                  job-name=sleep-29275963
+Annotations:      batch.kubernetes.io/cronjob-scheduled-timestamp: 2025-08-30T12:43:00Z
+Controlled By:    CronJob/sleep
+Parallelism:      1
+Completions:      1
+Completion Mode:  NonIndexed
+Suspend:          false
+Backoff Limit:    6
+Start Time:       Sat, 30 Aug 2025 12:43:10 +0000
+Pods Statuses:    1 Active (1 Ready) / 0 Succeeded / 0 Failed
+Pod Template:
+  Labels:  batch.kubernetes.io/controller-uid=a17ac976-6e10-4431-8e7c-672ce476fc5d
+           batch.kubernetes.io/job-name=sleep-29275963
+           controller-uid=a17ac976-6e10-4431-8e7c-672ce476fc5d
+           job-name=sleep-29275963
+  Containers:
+   sleep:
+    Image:      busybox
+    Port:       <none>
+    Host Port:  <none>
+    Command:
+      sleep
+      100
+    Environment:   <none>
+    Mounts:        <none>
+  Volumes:         <none>
+  Node-Selectors:  <none>
+  Tolerations:     <none>
+Events:
+  Type     Reason            Age   From            Message
+  ----     ------            ----  ----            -------
+  Warning  FailedCreate      57s   job-controller  Error creating: Unauthorized
+  Normal   SuccessfulCreate  56s   job-controller  Created pod: sleep-29275963-j4r75

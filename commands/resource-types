@@ -1,0 +1,366 @@
+ubuntu@absolved-duckling:~$ k get bindings
+Error from server (MethodNotAllowed): the server does not allow this method on the requested resource
+ubuntu@absolved-duckling:~$ k get cs
+Warning: v1 ComponentStatus is deprecated in v1.19+
+NAME                 STATUS    MESSAGE   ERROR
+scheduler            Healthy   ok        
+controller-manager   Healthy   ok        
+etcd-0               Healthy   ok        
+ubuntu@absolved-duckling:~$ k get configmaps
+NAME               DATA   AGE
+kube-root-ca.crt   1      37h
+ubuntu@absolved-duckling:~$ k get endpoints
+Warning: v1 Endpoints is deprecated in v1.33+; use discovery.k8s.io/v1 EndpointSlice
+NAME         ENDPOINTS                                         AGE
+kubernetes   192.168.49.2:8443                                 37h
+my-service   10.244.1.7:9376,10.244.2.7:9376,10.244.2.8:9376   35m
+ubuntu@absolved-duckling:~$ k get events
+LAST SEEN   TYPE     REASON             OBJECT                          MESSAGE
+27m         Normal   Scheduled          pod/frontend-for-nginx-dspq5    Successfully assigned default/frontend-for-nginx-dspq5 to minikube-m02
+27m         Normal   Pulling            pod/frontend-for-nginx-dspq5    Pulling image "nginx"
+27m         Normal   Pulled             pod/frontend-for-nginx-dspq5    Successfully pulled image "nginx" in 39.606s (39.606s including waiting). Image size: 197916407 bytes.
+27m         Normal   Created            pod/frontend-for-nginx-dspq5    Created container: nginx
+27m         Normal   Started            pod/frontend-for-nginx-dspq5    Started container nginx
+27m         Normal   SuccessfulCreate   replicaset/frontend-for-nginx   Created pod: frontend-for-nginx-dspq5
+11m         Normal   SuccessfulDelete   replicaset/frontend-for-nginx   Deleted pod: nginx-web-3
+52m         Normal   Scheduled          pod/nginx-web-1                 Successfully assigned default/nginx-web-1 to minikube-m03
+52m         Normal   Pulling            pod/nginx-web-1                 Pulling image "nginx"
+51m         Normal   Pulled             pod/nginx-web-1                 Successfully pulled image "nginx" in 39.571s (39.571s including waiting). Image size: 197916407 bytes.
+51m         Normal   Created            pod/nginx-web-1                 Created container: nginx
+51m         Normal   Started            pod/nginx-web-1                 Started container nginx
+43m         Normal   Killing            pod/nginx-web-1                 Stopping container nginx
+39m         Normal   Scheduled          pod/nginx-web-1                 Successfully assigned default/nginx-web-1 to minikube-m03
+39m         Normal   Pulling            pod/nginx-web-1                 Pulling image "nginx"
+39m         Normal   Pulled             pod/nginx-web-1                 Successfully pulled image "nginx" in 2.508s (2.508s including waiting). Image size: 197916407 bytes.
+39m         Normal   Created            pod/nginx-web-1                 Created container: nginx
+39m         Normal   Started            pod/nginx-web-1                 Started container nginx
+42m         Normal   Scheduled          pod/nginx-web-2                 Successfully assigned default/nginx-web-2 to minikube-m03
+42m         Normal   Pulling            pod/nginx-web-2                 Pulling image "nginx"
+42m         Normal   Pulled             pod/nginx-web-2                 Successfully pulled image "nginx" in 2.618s (2.618s including waiting). Image size: 197916407 bytes.
+42m         Normal   Created            pod/nginx-web-2                 Created container: nginx
+42m         Normal   Started            pod/nginx-web-2                 Started container nginx
+11m         Normal   Scheduled          pod/nginx-web-3                 Successfully assigned default/nginx-web-3 to minikube
+ubuntu@absolved-duckling:~$ k get limitranges
+No resources found in default namespace.
+ubuntu@absolved-duckling:~$ k get limits
+No resources found in default namespace.
+ubuntu@absolved-duckling:~$ k get namespaces
+NAME                   STATUS   AGE
+default                Active   37h
+kube-node-lease        Active   37h
+kube-public            Active   37h
+kube-system            Active   37h
+kubernetes-dashboard   Active   142m
+my-namespace           Active   4h7m
+ubuntu@absolved-duckling:~$ k gte ovc
+error: unknown command "gte" for "kubectl"
+
+Did you mean this?
+get
+ubuntu@absolved-duckling:~$ k get pvc
+No resources found in default namespace.
+ubuntu@absolved-duckling:~$ k gte podtemplates
+error: unknown command "gte" for "kubectl"
+
+Did you mean this?
+get
+ubuntu@absolved-duckling:~$ k get podtemplates
+No resources found in default namespace.
+ubuntu@absolved-duckling:~$ k get rc
+No resources found in default namespace.
+ubuntu@absolved-duckling:~$ k gte quota
+error: unknown command "gte" for "kubectl"
+
+Did you mean this?
+get
+ubuntu@absolved-duckling:~$ k get quota
+No resources found in default namespace.
+ubuntu@absolved-duckling:~$ k get secrest
+error: the server doesn't have a resource type "secrest"
+ubuntu@absolved-duckling:~$ k get secrets
+No resources found in default namespace.
+ubuntu@absolved-duckling:~$ k get sa
+NAME      SECRETS   AGE
+default   0         37h
+ubuntu@absolved-duckling:~$ k get svc
+NAME         TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)   AGE
+kubernetes   ClusterIP   10.96.0.1       <none>        443/TCP   37h
+my-service   ClusterIP   10.101.157.30   <none>        80/TCP    38m
+ubuntu@absolved-duckling:~$ k get mutatingwebhookconfigurations
+No resources found
+ubuntu@absolved-duckling:~$ k get validatingwebhookconfigurations
+No resources found
+ubuntu@absolved-duckling:~$ k get customresourcedefinitions
+No resources found
+ubuntu@absolved-duckling:~$ k get apiservices
+NAME                              SERVICE   AVAILABLE   AGE
+v1.                               Local     True        37h
+v1.admissionregistration.k8s.io   Local     True        37h
+v1.apiextensions.k8s.io           Local     True        37h
+v1.apps                           Local     True        37h
+v1.authentication.k8s.io          Local     True        37h
+v1.authorization.k8s.io           Local     True        37h
+v1.autoscaling                    Local     True        37h
+v1.batch                          Local     True        37h
+v1.certificates.k8s.io            Local     True        37h
+v1.coordination.k8s.io            Local     True        37h
+v1.discovery.k8s.io               Local     True        37h
+v1.events.k8s.io                  Local     True        37h
+v1.flowcontrol.apiserver.k8s.io   Local     True        37h
+v1.networking.k8s.io              Local     True        37h
+v1.node.k8s.io                    Local     True        37h
+v1.policy                         Local     True        37h
+v1.rbac.authorization.k8s.io      Local     True        37h
+v1.scheduling.k8s.io              Local     True        37h
+v1.storage.k8s.io                 Local     True        37h
+v2.autoscaling                    Local     True        37h
+ubuntu@absolved-duckling:~$ k get controllerrevisions
+No resources found in default namespace.
+ubuntu@absolved-duckling:~$ k get daemonsets
+No resources found in default namespace.
+ubuntu@absolved-duckling:~$ k get deployments
+No resources found in default namespace.
+ubuntu@absolved-duckling:~$ k get replicasets
+NAME                 DESIRED   CURRENT   READY   AGE
+frontend-for-nginx   3         3         3       33m
+ubuntu@absolved-duckling:~$ k get statefulsets
+No resources found in default namespace.
+ubuntu@absolved-duckling:~$ k get tokenreviews
+Error from server (MethodNotAllowed): the server does not allow this method on the requested resource
+ubuntu@absolved-duckling:~$ k get localsubjectaccessreviews
+Error from server (MethodNotAllowed): the server does not allow this method on the requested resource
+ubuntu@absolved-duckling:~$ k get horizontalpodautoscalers
+No resources found in default namespace.
+ubuntu@absolved-duckling:~$ k get horizontalpodautoscalersed
+error: the server doesn't have a resource type "horizontalpodautoscalersed"
+ubuntu@absolved-duckling:~$ k get cronjobs
+No resources found in default namespace.
+ubuntu@absolved-duckling:~$ k get jobs
+NAME    STATUS     COMPLETIONS   DURATION   AGE
+hello   Complete   1/1           9s         3h54m
+sleep   Complete   1/1           106s       3h50m
+ubuntu@absolved-duckling:~$ k get certificatesigningrequests
+No resources found
+ubuntu@absolved-duckling:~$ k get leases
+No resources found in default namespace.
+ubuntu@absolved-duckling:~$ k get endpointslices
+NAME               ADDRESSTYPE   PORTS   ENDPOINTS                          AGE
+kubernetes         IPv4          8443    192.168.49.2                       37h
+my-service-ptnbb   IPv4          9376    10.244.2.7,10.244.2.8,10.244.1.7   45m
+ubuntu@absolved-duckling:~$ k get events
+LAST SEEN   TYPE     REASON             OBJECT                          MESSAGE
+37m         Normal   Scheduled          pod/frontend-for-nginx-dspq5    Successfully assigned default/frontend-for-nginx-dspq5 to minikube-m02
+37m         Normal   Pulling            pod/frontend-for-nginx-dspq5    Pulling image "nginx"
+36m         Normal   Pulled             pod/frontend-for-nginx-dspq5    Successfully pulled image "nginx" in 39.606s (39.606s including waiting). Image size: 197916407 bytes.
+36m         Normal   Created            pod/frontend-for-nginx-dspq5    Created container: nginx
+36m         Normal   Started            pod/frontend-for-nginx-dspq5    Started container nginx
+37m         Normal   SuccessfulCreate   replicaset/frontend-for-nginx   Created pod: frontend-for-nginx-dspq5
+21m         Normal   SuccessfulDelete   replicaset/frontend-for-nginx   Deleted pod: nginx-web-3
+52m         Normal   Killing            pod/nginx-web-1                 Stopping container nginx
+49m         Normal   Scheduled          pod/nginx-web-1                 Successfully assigned default/nginx-web-1 to minikube-m03
+49m         Normal   Pulling            pod/nginx-web-1                 Pulling image "nginx"
+49m         Normal   Pulled             pod/nginx-web-1                 Successfully pulled image "nginx" in 2.508s (2.508s including waiting). Image size: 197916407 bytes.
+49m         Normal   Created            pod/nginx-web-1                 Created container: nginx
+49m         Normal   Started            pod/nginx-web-1                 Started container nginx
+52m         Normal   Scheduled          pod/nginx-web-2                 Successfully assigned default/nginx-web-2 to minikube-m03
+52m         Normal   Pulling            pod/nginx-web-2                 Pulling image "nginx"
+52m         Normal   Pulled             pod/nginx-web-2                 Successfully pulled image "nginx" in 2.618s (2.618s including waiting). Image size: 197916407 bytes.
+52m         Normal   Created            pod/nginx-web-2                 Created container: nginx
+52m         Normal   Started            pod/nginx-web-2                 Started container nginx
+21m         Normal   Scheduled          pod/nginx-web-3                 Successfully assigned default/nginx-web-3 to minikube
+ubuntu@absolved-duckling:~$ k get ingress
+No resources found in default namespace.
+ubuntu@absolved-duckling:~$  k get flowschemas
+NAME                           PRIORITYLEVEL     MATCHINGPRECEDENCE   DISTINGUISHERMETHOD   AGE   MISSINGPL
+exempt                         exempt            1                    <none>                37h   False
+probes                         exempt            2                    <none>                37h   False
+system-leader-election         leader-election   100                  ByUser                37h   False
+endpoint-controller            workload-high     150                  ByUser                37h   False
+workload-leader-election       leader-election   200                  ByUser                37h   False
+system-node-high               node-high         400                  ByUser                37h   False
+system-nodes                   system            500                  ByUser                37h   False
+kube-controller-manager        workload-high     800                  ByNamespace           37h   False
+kube-scheduler                 workload-high     800                  ByNamespace           37h   False
+kube-system-service-accounts   workload-high     900                  ByNamespace           37h   False
+service-accounts               workload-low      9000                 ByUser                37h   False
+global-default                 global-default    9900                 ByUser                37h   False
+catch-all                      catch-all         10000                ByUser                37h   False
+ubuntu@absolved-duckling:~$  k get prioritylevelconfigurations
+NAME              TYPE      NOMINALCONCURRENCYSHARES   QUEUES   HANDSIZE   QUEUELENGTHLIMIT   AGE
+catch-all         Limited   5                          <none>   <none>     <none>             37h
+exempt            Exempt    <none>                     <none>   <none>     <none>             37h
+global-default    Limited   20                         128      6          50                 37h
+leader-election   Limited   10                         16       4          50                 37h
+node-high         Limited   40                         64       6          50                 37h
+system            Limited   30                         64       6          50                 37h
+workload-high     Limited   40                         128      6          50                 37h
+workload-low      Limited   100                        128      6          50                 37h
+ubuntu@absolved-duckling:~$  k get ingressclasses
+No resources found
+ubuntu@absolved-duckling:~$  k get networkpolicies
+No resources found in default namespace.
+ubuntu@absolved-duckling:~$  k get runtimeclasses
+No resources found
+ubuntu@absolved-duckling:~$  k get poddisruptionbudgets
+No resources found in default namespace.
+ubuntu@absolved-duckling:~$  k get podsecuritypolicies
+error: the server doesn't have a resource type "podsecuritypolicies"
+ubuntu@absolved-duckling:~$  k get podsecuritypolicies
+error: the server doesn't have a resource type "podsecuritypolicies"
+ubuntu@absolved-duckling:~$  k get clusterrolebindings
+NAME                                                            ROLE                                                                               AGE
+cluster-admin                                                   ClusterRole/cluster-admin                                                          37h
+kindnet                                                         ClusterRole/kindnet                                                                37h
+kubeadm:cluster-admins                                          ClusterRole/cluster-admin                                                          37h
+kubeadm:get-nodes                                               ClusterRole/kubeadm:get-nodes                                                      37h
+kubeadm:kubelet-bootstrap                                       ClusterRole/system:node-bootstrapper                                               37h
+kubeadm:node-autoapprove-bootstrap                              ClusterRole/system:certificates.k8s.io:certificatesigningrequests:nodeclient       37h
+kubeadm:node-autoapprove-certificate-rotation                   ClusterRole/system:certificates.k8s.io:certificatesigningrequests:selfnodeclient   37h
+kubeadm:node-proxier                                            ClusterRole/system:node-proxier                                                    37h
+kubernetes-dashboard                                            ClusterRole/cluster-admin                                                          156m
+minikube-rbac                                                   ClusterRole/cluster-admin                                                          37h
+storage-provisioner                                             ClusterRole/system:persistent-volume-provisioner                                   37h
+system:basic-user                                               ClusterRole/system:basic-user                                                      37h
+system:controller:attachdetach-controller                       ClusterRole/system:controller:attachdetach-controller                              37h
+system:controller:certificate-controller                        ClusterRole/system:controller:certificate-controller                               37h
+system:controller:clusterrole-aggregation-controller            ClusterRole/system:controller:clusterrole-aggregation-controller                   37h
+system:controller:cronjob-controller                            ClusterRole/system:controller:cronjob-controller                                   37h
+system:controller:daemon-set-controller                         ClusterRole/system:controller:daemon-set-controller                                37h
+system:controller:deployment-controller                         ClusterRole/system:controller:deployment-controller                                37h
+system:controller:disruption-controller                         ClusterRole/system:controller:disruption-controller                                37h
+system:controller:endpoint-controller                           ClusterRole/system:controller:endpoint-controller                                  37h
+system:controller:endpointslice-controller                      ClusterRole/system:controller:endpointslice-controller                             37h
+system:controller:endpointslicemirroring-controller             ClusterRole/system:controller:endpointslicemirroring-controller                    37h
+system:controller:ephemeral-volume-controller                   ClusterRole/system:controller:ephemeral-volume-controller                          37h
+system:controller:expand-controller                             ClusterRole/system:controller:expand-controller                                    37h
+system:controller:generic-garbage-collector                     ClusterRole/system:controller:generic-garbage-collector                            37h
+system:controller:horizontal-pod-autoscaler                     ClusterRole/system:controller:horizontal-pod-autoscaler                            37h
+system:controller:job-controller                                ClusterRole/system:controller:job-controller                                       37h
+system:controller:legacy-service-account-token-cleaner          ClusterRole/system:controller:legacy-service-account-token-cleaner  
+system:controller:namespace-controller                          ClusterRole/system:controller:namespace-controller                                 37h
+system:controller:node-controller                               ClusterRole/system:controller:node-controller                                      37h
+system:controller:persistent-volume-binder                      ClusterRole/system:controller:persistent-volume-binder                             37h
+system:controller:pod-garbage-collector                         ClusterRole/system:controller:pod-garbage-collector                                37h
+system:controller:pv-protection-controller                      ClusterRole/system:controller:pv-protection-controller                             37h
+system:controller:pvc-protection-controller                     ClusterRole/system:controller:pvc-protection-controller                            37h
+system:controller:replicaset-controller                         ClusterRole/system:controller:replicaset-controller                                37h
+system:controller:replication-controller                        ClusterRole/system:controller:replication-controller                               37h
+system:controller:resourcequota-controller                      ClusterRole/system:controller:resourcequota-controller                             37h
+system:controller:root-ca-cert-publisher                        ClusterRole/system:controller:root-ca-cert-publisher                               37h
+system:controller:route-controller                              ClusterRole/system:controller:route-controller                                     37h
+system:controller:selinux-warning-controller                    ClusterRole/system:controller:selinux-warning-controller                           37h
+system:controller:service-account-controller                    ClusterRole/system:controller:service-account-controller                           37h
+system:controller:service-cidrs-controller                      ClusterRole/system:controller:service-cidrs-controller                             37h
+system:controller:service-controller                            ClusterRole/system:controller:service-controller                                   37h
+system:controller:statefulset-controller                        ClusterRole/system:controller:statefulset-controller                               37h
+system:controller:ttl-after-finished-controller                 ClusterRole/system:controller:ttl-after-finished-controller                        37h
+system:controller:ttl-controller                                ClusterRole/system:controller:ttl-controller                                       37h
+system:controller:validatingadmissionpolicy-status-controller   ClusterRole/system:controller:validatingadmissionpolicy-status-controller          37h
+system:coredns                                                  ClusterRole/system:coredns                                                         37h
+system:discovery                                                ClusterRole/system:discovery                                                       37h
+system:kube-controller-manager                                  ClusterRole/system:kube-controller-manager                                         37h
+system:kube-dns                                                 ClusterRole/system:kube-dns                                                        37h
+system:kube-scheduler                                           ClusterRole/system:kube-scheduler                                                  37h
+system:monitoring                                               ClusterRole/system:monitoring                                                      37h
+system:node                                                     ClusterRole/system:node                                                            37h
+system:node-proxier                                             ClusterRole/system:node-proxier                                                    37h
+system:public-info-viewer                                       ClusterRole/system:public-info-viewer                                              37h
+system:service-account-issuer-discovery                         ClusterRole/system:service-account-issuer-discovery                                37h
+system:volume-scheduler                                         ClusterRole/system:volume-scheduler                                                37h
+ubuntu@absolved-duckling:~$  k get clusterrols
+error: the server doesn't have a resource type "clusterrols"
+ubuntu@absolved-duckling:~$  k get clusterroles
+NAME                                                                   CREATED AT
+admin                                                                  2025-08-29T01:33:09Z
+cluster-admin                                                          2025-08-29T01:33:09Z
+edit                                                                   2025-08-29T01:33:09Z
+kindnet                                                                2025-08-29T01:33:11Z
+kubeadm:get-nodes                                                      2025-08-29T01:33:09Z
+kubernetes-dashboard                                                   2025-08-30T12:53:09Z
+system:aggregate-to-admin                                              2025-08-29T01:33:09Z
+system:aggregate-to-edit                                               2025-08-29T01:33:09Z
+system:aggregate-to-view                                               2025-08-29T01:33:09Z
+system:auth-delegator                                                  2025-08-29T01:33:09Z
+system:basic-user                                                      2025-08-29T01:33:09Z
+system:certificates.k8s.io:certificatesigningrequests:nodeclient       2025-08-29T01:33:09Z
+system:certificates.k8s.io:certificatesigningrequests:selfnodeclient   2025-08-29T01:33:09Z
+system:certificates.k8s.io:kube-apiserver-client-approver              2025-08-29T01:33:09Z
+system:certificates.k8s.io:kube-apiserver-client-kubelet-approver      2025-08-29T01:33:09Z
+system:certificates.k8s.io:kubelet-serving-approver                    2025-08-29T01:33:09Z
+system:certificates.k8s.io:legacy-unknown-approver                     2025-08-29T01:33:09Z
+system:controller:attachdetach-controller                              2025-08-29T01:33:09Z
+system:controller:certificate-controller                               2025-08-29T01:33:09Z
+system:controller:clusterrole-aggregation-controller                   2025-08-29T01:33:09Z
+system:controller:cronjob-controller                                   2025-08-29T01:33:09Z
+system:controller:daemon-set-controller                                2025-08-29T01:33:09Z
+system:controller:deployment-controller                                2025-08-29T01:33:09Z
+system:controller:disruption-controller                                2025-08-29T01:33:09Z
+system:controller:endpoint-controller                                  2025-08-29T01:33:09Z
+system:controller:endpointslice-controller                             2025-08-29T01:33:09Z
+system:controller:endpointslicemirroring-controller                    2025-08-29T01:33:09Z
+system:controller:ephemeral-volume-controller                          2025-08-29T01:33:09Z
+system:controller:expand-controller                                    2025-08-29T01:33:09Z
+system:controller:generic-garbage-collector                            2025-08-29T01:33:09Z
+system:controller:horizontal-pod-autoscaler                            2025-08-29T01:33:09Z
+system:controller:job-controller                                       2025-08-29T01:33:09Z
+system:controller:legacy-service-account-token-cleaner                 2025-08-29T01:33:09Z
+system:controller:namespace-controller                                 2025-08-29T01:33:09Z
+system:controller:node-controller                                      2025-08-29T01:33:09Z
+system:controller:persistent-volume-binder                             2025-08-29T01:33:09Z
+system:controller:pod-garbage-collector                                2025-08-29T01:33:09Z
+system:controller:pv-protection-controller                             2025-08-29T01:33:09Z
+system:controller:pvc-protection-controller                            2025-08-29T01:33:09Z
+system:controller:replicaset-controller                                2025-08-29T01:33:09Z
+system:controller:replication-controller                               2025-08-29T01:33:09Z
+system:controller:resourcequota-controller                             2025-08-29T01:33:09Z
+system:controller:root-ca-cert-publisher                               2025-08-29T01:33:09Z
+system:controller:route-controller                                     2025-08-29T01:33:09Z
+system:controller:selinux-warning-controller                           2025-08-29T01:33:09Z
+system:controller:service-account-controller                           2025-08-29T01:33:09Z
+system:controller:service-cidrs-controller                             2025-08-29T01:33:09Z
+system:controller:service-controller                                   2025-08-29T01:33:09Z
+system:controller:statefulset-controller                               2025-08-29T01:33:09Z
+system:controller:ttl-after-finished-controller                        2025-08-29T01:33:09Z
+system:controller:ttl-controller                                       2025-08-29T01:33:09Z
+system:controller:validatingadmissionpolicy-status-controller          2025-08-29T01:33:09Z
+system:coredns                                                         2025-08-29T01:33:10Z
+system:discovery                                                       2025-08-29T01:33:09Z
+system:heapster                                                        2025-08-29T01:33:09Z
+system:kube-aggregator                                                 2025-08-29T01:33:09Z
+system:kube-controller-manager                                         2025-08-29T01:33:09Z
+system:kube-dns                                                        2025-08-29T01:33:09Z
+system:kube-scheduler                                                  2025-08-29T01:33:09Z
+system:kubelet-api-admin                                               2025-08-29T01:33:09Z
+system:monitoring                                                      2025-08-29T01:33:09Z
+system:node                                                            2025-08-29T01:33:09Z
+system:node-bootstrapper                                               2025-08-29T01:33:09Z
+system:node-problem-detector                                           2025-08-29T01:33:09Z
+system:node-proxier                                                    2025-08-29T01:33:09Z
+system:persistent-volume-provisioner                                   2025-08-29T01:33:09Z
+system:public-info-viewer                                              2025-08-29T01:33:09Z
+system:service-account-issuer-discovery                                2025-08-29T01:33:09Z
+system:volume-scheduler                                                2025-08-29T01:33:09Z
+view                                                                   2025-08-29T01:33:09Z
+ubuntu@absolved-duckling:~$  k get rolebindings
+No resources found in default namespace.
+ubuntu@absolved-duckling:~$  k get roles
+No resources found in default namespace.
+ubuntu@absolved-duckling:~$  k get priorityclasses
+NAME                      VALUE        GLOBAL-DEFAULT   AGE   PREEMPTIONPOLICY
+system-cluster-critical   2000000000   false            37h   PreemptLowerPriority
+system-node-critical      2000001000   false            37h   PreemptLowerPriority
+ubuntu@absolved-duckling:~$  k get csidrivers
+No resources found
+ubuntu@absolved-duckling:~$  k get csinodes
+NAME           DRIVERS   AGE
+minikube       0         37h
+minikube-m02   0         37h
+minikube-m03   0         37h
+ubuntu@absolved-duckling:~$  k get storageclasse
+error: the server doesn't have a resource type "storageclasse"
+ubuntu@absolved-duckling:~$  k get storageclasses
+NAME                 PROVISIONER                RECLAIMPOLICY   VOLUMEBINDINGMODE   ALLOWVOLUMEEXPANSION   AGE
+standard (default)   k8s.io/minikube-hostpath   Delete          Immediate           false                  37h
+ubuntu@absolved-duckling:~$  k get volumeattachments
+No resources found
+ubuntu@absolved-duckling:~$ 

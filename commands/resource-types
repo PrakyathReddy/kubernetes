@@ -1,3 +1,6 @@
+https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands
+
+
 ubuntu@absolved-duckling:~$ k get bindings
 Error from server (MethodNotAllowed): the server does not allow this method on the requested resource
 ubuntu@absolved-duckling:~$ k get cs

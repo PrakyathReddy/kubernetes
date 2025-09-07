@@ -1,0 +1,27 @@
+$ controlplane ~ ➜  k get pods --namespace=research
+NAME    READY   STATUS      RESTARTS      AGE
+dna-1   0/1     Completed   3 (34s ago)   53s
+dna-2   0/1     Completed   3 (34s ago)   53s
+
+$ controlplane ~ ➜  k run redis --image=redis --namespace=finance
+pod/redis created
+
+$ controlplane ~ ➜  k get pods --all-namespaces
+NAMESPACE       NAME                                      READY   STATUS             RESTARTS      AGE
+dev             redis-db                                  1/1     Running            0             2m12s
+finance         payroll                                   1/1     Running            0             2m12s
+finance         redis                                     1/1     Running            0             27s
+kube-system     coredns-697968c856-d67q7                  1/1     Running            0             8m12s
+kube-system     helm-install-traefik-crd-x64q5            0/1     Completed          0             8m12s
+kube-system     helm-install-traefik-lbwg5                0/1     Completed          2             8m12s
+kube-system     local-path-provisioner-774c6665dc-b8j28   1/1     Running            0             8m12s
+kube-system     metrics-server-6f4c6675d5-s895m           1/1     Running            0             8m12s
+kube-system     svclb-traefik-cc8d15d0-7vlc6              2/2     Running            0             7m43s
+kube-system     traefik-c98fdf6fb-ztx5w                   1/1     Running            0             7m43s
+manufacturing   red-app                                   1/1     Running            0             2m12s
+marketing       blue                                      1/1     Running            0             2m12s
+marketing       redis-db                                  1/1     Running            0             2m12s
+research        dna-1                                     0/1     CrashLoopBackOff   4 (34s ago)   2m12s
+research        dna-2                                     0/1     CrashLoopBackOff   4 (32s ago)   2m12s
+
+$ k config set-context $(k config --current-context) --namespace=dev

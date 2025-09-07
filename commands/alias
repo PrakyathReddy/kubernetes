@@ -1,0 +1,6 @@
+alias k="kubectl"
+temporary use within the same session
+
+to make it stick, 
+echo "alias k='kubectl'" >> ~/.bashrc
+

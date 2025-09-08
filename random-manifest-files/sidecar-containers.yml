@@ -1,0 +1,16 @@
+# sidecar containers
+apiVersion: v1
+kind: Pod
+metadata:
+  name: simple-webapp
+  labels:
+    name: simple-webapp
+spec:
+  containers:
+  - name: web-app
+    image: web-app
+  initContainers:
+  - name: db-checker
+    image: busybox
+    command: 'wait-for-db-to-start.sh'
+    restartPolicy: Always

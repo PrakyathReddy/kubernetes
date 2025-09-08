@@ -1,0 +1,2 @@
+$ k run nginx --image=nginx --dry-run=client -o yaml 
+$ k create deploy nginx --image=nginx --replicas=3 --dry-run -o yaml > nginx-deployment.yml

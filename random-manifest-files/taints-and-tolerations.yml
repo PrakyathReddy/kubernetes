@@ -1,0 +1,19 @@
+# $ k taint nodes node-name key=value:taint-effect
+# Taint on node: k taint nodes node1 app=blue:NoSchedule
+# Toleration on pod: 
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myapp
+  labels:
+    app.kubernetes.io/name: myapp
+spec:
+  containers:
+  - name: myapp
+    image: <Image>
+  tolerations:
+  - key: "app"
+    operator: "equal"
+    value: "blue"
+    effect: "NoSchedule"

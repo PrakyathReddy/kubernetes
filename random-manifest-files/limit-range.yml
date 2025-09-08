@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: cpu-resource-constraint
+spec:
+  limits:
+  - default:
+      cpu: 500m
+    defaultRequest:
+      cpu: 500m
+    max:
+      cpu: "1"
+    min:
+      cpu: 100m
+    type: Container
+
+# these limits apply across the namespace
+
+-------
+
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: my-esource-quota
+spec:
+  hard:
+    requests.cpu: 4
+    requests.memory: 4Gi
+    limits.cpu: 10
+    limits.memory: 10Gi
+
+# hard limits for all the pods within a particular namespace

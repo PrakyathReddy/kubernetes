@@ -1,0 +1,50 @@
+# inject complete configMap into yaml file
+apiVersion: v1
+kind: Pod
+metadata:
+- name: simple-webapp-color
+spec:
+  containers:
+  - name: simple-webapp-color
+    image: simple-webapp-color
+    ports:
+    - containerPort: 8080
+    envFrom:
+    - configMapRef:
+        name: app-config
+---
+
+# suppose we want to inject some values from configmap only
+apiVersion: v1
+kind: Pod
+metadata:
+- name: simple-webapp-color
+spec:
+  containers:
+  - name: simple-webapp-color
+    image: simple-webapp-color
+    ports:
+    - containerPort: 8080
+    env:
+    - name: APP_COLOR
+      valueFrom:
+        configMapKeyRef:
+        - name: app-config
+          key: APP_COLOR
+---
+
+# whole data can be injected as a volume too
+apiVersion: v1
+kind: Pod
+metadata:
+- name: simple-webapp-color
+spec:
+  containers:
+  - name: simple-webapp-color
+    image: simple-webapp-color
+    ports:
+    - containerPort: 8080
+    volumes:
+    - name: app-config-volume
+      configMap:
+        name: app-config

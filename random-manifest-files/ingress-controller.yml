@@ -1,0 +1,69 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: nginx-ingress-controller
+spec:
+  replicas: 1
+  selectors:
+    matchLabels:
+      name: nginx-ingress
+  template:
+    metadata:
+      labels:
+        name: nginx-ingress
+    spec:
+      containers:
+      - name: nginx-ingress-controller
+        image: quay.io/kubernetes-ingress-controller/nginx-ingress-controller:0.21.0
+      args:
+      # like an entrypoint, to start the nginx controller
+      - /nginx-ingress-controller
+      - --configMap=$(POD_NAMESPACE)/nginx-confguration
+      env:
+      # nginx needs this to read metadata from the pod
+      - name: POD_NAME
+        valueFrom:
+          fieldRef:
+            fieldPath: metadata.name
+      - name: POD_NAMESPACE
+        valueFrom:
+          fieldRef:
+            fieldPath: metadata.namespace
+      ports:
+      - name: http
+        containerPort: 80
+      - name: https
+        containerPort: 443
+---
+# configMap
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-confguration
+data:
+  key: value
+---
+# service to expose nginx to external world
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-ingress
+spec:
+  type: NodePort
+  selector:
+    name: nginx-ingress
+  ports:
+  - port: 80
+    targetPort: 80
+    protocol: TCP
+    name: http
+  - port: 443
+    targetPort: 443
+    protocol: TCP
+    name: https
+---
+# service account for nginx with appropriate roles, rolebindings and clusterRoles
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: nginx-ingress-serviceaccount

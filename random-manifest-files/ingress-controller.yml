@@ -67,3 +67,20 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: nginx-ingress-serviceaccount
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: myingress
+spec:
+  rules:
+  - host: my-online-store.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/wear"
+        backend:
+          service:
+            name: wear-service
+            port:
+              number: 80

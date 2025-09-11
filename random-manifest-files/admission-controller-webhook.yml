@@ -1,0 +1,19 @@
+apiVersion: admissionregistration.k8s.io/v1
+kind: ValidatingWebhookConfiguration
+metadata:
+  name: "pod-policy.example.com"
+webhooks:
+- name: "pod-policy.example.com"
+  clientConfig:
+    service:
+      namespace: "webhook-namespace"
+      name: "webhook-service"
+    caBundle: "cafdwsdefad....."
+  rules:
+  - apiGroups: [ "" ]
+    apiVersions: [ "v1" ]
+    operations: [ "CREATE" ]
+    resources: [ "pods" ]
+    scope: [ "namespaced" ]
+
+# admission-webhook-server deployed as pod and configured with a pod

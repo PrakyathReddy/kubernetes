@@ -1,0 +1,6 @@
+How to troubleshoot a pod that is in pending state ?
+1. scheduler not present. Check $ k get pods -n kube-system | grep scheduler
+describe pod; get pod -o yml - check events
+
+------
+

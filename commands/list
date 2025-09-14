@@ -6,3 +6,5 @@ $ k run <pod> --image=<image> --command -- <cmd> <arg1> <arg2>
 
 create config map imperatively
 $ k create configmap <configname> --from-literal=<key>=<value> --from-literal=<key>=<value>
+
+$ k get pods --watch

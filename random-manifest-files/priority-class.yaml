@@ -1,0 +1,21 @@
+apiVersion: scheduling.k8s.io/v1
+kind: PriorityClass
+metadata:
+  name: high-priority
+value: 1000000
+description: "Priority class for mission critical pods"
+globalDefault: true # optional. This means by defaul all pods created will be of this kind of priority
+preemtionPolicy: PreemptLowerPriority # in case higher priority pods show up, and there's lack of resources, the lower priority ones will be evicted to make room for pods with level of priority. "never" means they'll wait rather than evict existing ones
+---
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-web-3
+spec:
+  containers:
+    name: nginx
+    image: nginx
+    ports:
+    - containerPort: 80
+  PriorityClassName: high-priority

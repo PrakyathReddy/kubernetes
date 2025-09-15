@@ -15,8 +15,7 @@ spec:
     type: Container
 
 # these limits apply across the namespace
-
--------
+---
 
 apiVersion: v1
 kind: ResourceQuota

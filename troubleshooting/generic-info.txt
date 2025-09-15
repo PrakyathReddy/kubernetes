@@ -1,0 +1,5 @@
+1. How to identify static pods ?
+Ans: Run the command kubectl get pods --all-namespaces and look for those with -<Node-Name> appended in the nam
+
+2. how to find the manifest files used for statis pods ?
+Ans: sudo find / -type d -name manifests or sudo find / -type d -name kubernetes

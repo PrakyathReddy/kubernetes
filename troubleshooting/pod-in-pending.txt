@@ -4,3 +4,4 @@ describe pod; get pod -o yml - check events
 
 ------
 
+2. 

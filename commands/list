@@ -8,3 +8,8 @@ create config map imperatively
 $ k create configmap <configname> --from-literal=<key>=<value> --from-literal=<key>=<value>
 
 $ k get pods --watch
+
+$ k get logs -f <pod-name> <container-name-if-more-than-one>
+
+$ k drain node-1 # kills the pods on this node and schedules them on remaining ones
+$ k cordon node-1 # makes the node unschedulable for upcoming pods. Does not terminate any existing pods

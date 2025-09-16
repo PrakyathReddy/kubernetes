@@ -1,0 +1,39 @@
+# After adding a new user, how to provide a certificate ? Traditionally, an admin would login to the CA server, certify it himself and provide the key back to user.
+
+1. User creates a key
+
+$ openssl genrsa -out jane.key 2048
+jane.key 
+
+2. User generates certificate signing request using the key with her name on it
+
+$ openssl req -new -key jane.key -subj "\CN=jane" -out jane.csr
+
+3. Sends the request to the administrator
+4. Administrator takes the key and creates a certificate signing request object
+
+apiVersion: certificates.k8s.io/v1
+kind: CertificateSigningRequest
+metada: 
+  name: jane
+spec: 
+  expirationSeconds: 600 #seconds
+  usages: 
+  - digital signature 
+  - key encipherment
+  - server auth 
+  request:
+  # paste the outpud of $ cat jane.csr | base64
+
+5. Once object created, all certificate signing requests can be seen by administrators thtough: 
+   $ k get csr 
+
+6. Admins can now approve
+   $ k certificate approve jane
+
+7. k8s signs the certificate using CA key pairs and generates a certificate for the user. This certificate can then be extracted and shared with the user.  
+
+8. $ k get csr jane -o yaml. Look for certificate section. Decode it using $ echo "<cert>" | base64 --decode
+
+All certificate related operations are done by the controller manager
+The kube-controller-manager.yaml file has 2 options where you can specify --cluster-signing-cert-file and --cluster-signing-key-file

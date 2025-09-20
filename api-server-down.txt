@@ -1,0 +1,33 @@
+action: add command --this-is-very-wrong in /etc/kubernetes/manifests/kube-apiserver.yaml file
+
+impact: api server is down
+The connection to the server 172.30.1.2:6443 was refused - did you specify the right host or port?
+
+Logs to check: 
+1. /var/log/pods
+2. /var/log/containers
+3. crictl ps + crictl logs
+4. docker ps + docker logs 
+5. /var/log/sysctl or journalctl
+
+2025-09-20T11:15:08.998544+00:00 controlplane kubelet[1558]: E0920 11:15:08.998364    1558 log.go:32] "StartContainer from runtime service failed" err="rpc error: code = Unknown desc = failed to create containerd task: failed to create shim task: OCI runtime create failed: runc create failed: unable to start container process: error during container init: exec: \"--this-is-very-wrong\": executable file not found in $PATH: unknown" containerID="2a3d0168b385c9037fa5962c05658a3cd77b282d8caf1aa4d015a5ee0c1e0fa1"
+
+Steps: 
+1. take a backup
+cp /etc/kubernetes/manifests/kube-apiserver.yaml ~/kube-apiserver.yaml.ori
+
+2. make the change using vi
+
+3. wait till container restarts
+watch crictl ps
+
+4. check for apiserver pod
+k -n kube-system get pod
+
+5. check pod logs
+check pod logs
+cat /var/log/pods/kube-system_kube-apiserver-controlplane_a3a455d471f833137588e71658e739da/kube-apiserver/X.log
+> 2022-01-26T10:41:12.401641185Z stderr F Error: unknown flag: --this-is-very-wrong
+
+6. undo the change and observe for pods in kube-system ns
+k get pods -n kube-system --watch 

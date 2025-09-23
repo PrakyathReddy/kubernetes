@@ -1,0 +1,21 @@
+Change the existing Apiserver manifest argument to: --etcd-servers=this-is-very-wrong
+
+1. take backup of /etc/manifests/kubernetes/kube-apiserver.yaml
+2. make the change
+3. watch crictl ps
+4. k -n kube-system get pod - we are looking for api-server
+5. cat /var/log/pods/kube-system_kube-apiserver-controlplane_e24b....
+> Err: connection error: desc = "transport: Error while dialing dial tcp: address this-is-very-wrong: missing port in address". Reconnecting...
+6. crictl ps - find the api server pod
+7. crictl logs f669a6f3afda2
+> Error while dialing dial tcp: address this-is-very-wrong: missing port in address. Reconnecting...
+8. journalctl | grep apiserver # nothing specific
+cat /var/log/syslog | grep apiserver # nothing specific
+9. restore from backup
+
+logs to check:
+1. /var/log/pods
+2. /var/log/containers
+3. crictl ps + crictl logs
+4. docker ps + docker logs (in case when Docker is used)
+5. kubelet logs: /var/log/syslog or journalctl
